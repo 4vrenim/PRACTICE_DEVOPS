@@ -1,3 +1,5 @@
+# Bài Lab 5: Thiết lập Docker Compose để chạy ứng dụng web với một cơ sở dữ liệu PostgreSQL.
+
 Cập nhật requirements.txt cài đặt thêm thư viện psycopg2 để Flask có thể kết nối với PostgreSQL
 
 Cập nhật app.py để kết nối với cơ sở dữ liệu PostgreSQL
