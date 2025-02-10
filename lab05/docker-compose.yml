@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  # Service cho Flask app
+  web:
+    build: .
+    container_name: flask-web
+    ports:
+      - "5000:5000"
+    environment:
+      - DB_HOST=db
+      - DB_NAME=flaskdb
+      - DB_USER=user
+      - DB_PASSWORD=password
+    depends_on:
+      - db
+
+  # Service cho PostgreSQL
+  db:
+    image: postgres:13
+    container_name: flask-db
+    environment:
+      POSTGRES_DB: flaskdb
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ./init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+    ports:
+      - "5432:5432"
+
