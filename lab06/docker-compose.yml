@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  web:
+    image: avrenim/flask-web-app  # Đảm bảo ứng dụng đã build thành image
+    deploy:
+      replicas: 3  # Số lượng bản sao của ứng dụng Flask (3 nodes)
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+      placement:
+        constraints:
+          - node.role == worker  # Chỉ deploy web trên worker node
+    ports:
+      - "5000:5000"  # Mở port 5000 cho ứng dụng web
+    environment:
+      - DB_HOST=db
+      - DB_NAME=flaskdb
+      - DB_USER=user
+      - DB_PASSWORD=password
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: flaskdb
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    deploy:
+      replicas: 1  # Một bản sao của database (chạy trên một node duy nhất)
+    volumes:
+      - ./init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+
