@@ -1,3 +1,5 @@
+# Bài Lab 4: Tạo một Dockerfile để xây dựng một ứng dụng web đơn giản sử dụng Python Flask.
+
 Build image Docker:
 >docker build -t flask-app .
 
