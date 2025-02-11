@@ -51,5 +51,21 @@ az monitor autoscale rule create \
 * Kiểm tra cấu hình Autoscale
 >az monitor autoscale show --resource-group MyResourceGroup --name MyAutoscaleRule
 
+## TEST
+* Kiểm tra trạng thái VM Scale Set
+>az vmss list-instances --resource-group MyResourceGroup --name MyScaleSet --output table
+
+![image](https://github.com/user-attachments/assets/b67d8912-f021-427d-b770-e522c1be9c0d)
+![image](https://github.com/user-attachments/assets/66ced30c-e959-4e54-bf38-293242e86466)
+
+* Kết nối SSH và tạo tải CPU cao trên một VM
+>sudo apt update && sudo apt install -y stress  
+>stress --cpu 4 --timeout 600
+
+* Kiểm tra số lượng VM sau 1 phút
+![image](https://github.com/user-attachments/assets/8db4c181-5cbe-4fdc-8afb-a4284eaf1989)
+![image](https://github.com/user-attachments/assets/a8c4417d-18bc-4baf-9ccd-c780c5407e3a)
+
+
 
 
