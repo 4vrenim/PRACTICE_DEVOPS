@@ -59,7 +59,7 @@ resource "azurerm_lb_rule" "lb_rule" {
   name                           = "http-rule"
   loadbalancer_id                = azurerm_lb.lb.id
   frontend_ip_configuration_name = "PublicIP"
-  backend_address_pool_id        = azurerm_lb_backend_address_pool.lb_backend.id
+  backend_address_pool_ids       = azurerm_lb_backend_address_pool.lb_backend.id
   protocol                       = "Tcp"
   frontend_port                  = 80
   backend_port                   = 80
@@ -76,11 +76,8 @@ resource "azurerm_linux_virtual_machine_scale_set" "vmss" {
   sku                 = "Standard_DS1_v2"
   instances           = 2
   admin_username      = "adminuser"
-
-  admin_ssh_key {
-    username   = "adminuser"
-    public_key = file("~/.ssh/id_rsa.pub")
-  }
+  admin_password      = "StrongP@ssw0rd123!"  
+  disable_password_authentication = false  # ⚠️ Cho phép đăng nhập bằng mật khẩu
 
   source_image_reference {
     publisher = "Canonical"
