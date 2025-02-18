@@ -1,22 +1,23 @@
 provider "azurerm" {
   features {}
-  subscription_id = "17381745-97a0-44e2-833d-a0d5bfe243e0" # Thay bằng Subscription ID thực tế của bạn
+
+  subscription_id = "your-subscription-id"  # Thay bằng Subscription ID thực tế của bạn
 }
 
 # 1️⃣ Nhập Resource Group có sẵn
 data "azurerm_resource_group" "existing_rg" {
-  name = "test"  # Thay bằng tên Resource Group của bạn
+  name = "MyExistingResourceGroup"  # Thay bằng tên Resource Group của bạn
 }
 
 # 2️⃣ Nhập Virtual Network (VNet) có sẵn
 data "azurerm_virtual_network" "existing_vnet" {
-  name                = "ubuntu-1-vnet"  # Thay bằng tên VNet của bạn
+  name                = "MyExistingVNet"  # Thay bằng tên VNet của bạn
   resource_group_name = data.azurerm_resource_group.existing_rg.name
 }
 
 # 3️⃣ Tạo Subnet trong VNet có sẵn
 resource "azurerm_subnet" "subnet" {
-  name                 = "MyTerraSubnet"
+  name                 = "MySubnet"
   resource_group_name  = data.azurerm_resource_group.existing_rg.name
   virtual_network_name = data.azurerm_virtual_network.existing_vnet.name
   address_prefixes     = ["10.0.2.0/24"]  # Chỉnh sửa địa chỉ nếu cần
@@ -24,7 +25,7 @@ resource "azurerm_subnet" "subnet" {
 
 # 4️⃣ Tạo Public IP cho NAT Gateway
 resource "azurerm_public_ip" "nat_ip" {
-  name                = "MyTerraNATPublicIP"
+  name                = "MyNATPublicIP"
   location            = data.azurerm_resource_group.existing_rg.location
   resource_group_name = data.azurerm_resource_group.existing_rg.name
   allocation_method   = "Static"
@@ -33,7 +34,7 @@ resource "azurerm_public_ip" "nat_ip" {
 
 # 5️⃣ Tạo NAT Gateway
 resource "azurerm_nat_gateway" "nat_gw" {
-  name                = "MyTerraNATGateway"
+  name                = "MyNATGateway"
   location            = data.azurerm_resource_group.existing_rg.location
   resource_group_name = data.azurerm_resource_group.existing_rg.name
   sku_name            = "Standard"
