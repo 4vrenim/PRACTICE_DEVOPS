@@ -129,6 +129,7 @@ resource "azurerm_monitor_autoscale_setting" "autoscale" {
         threshold          = 75
         time_aggregation   = "Average"
         time_window        = "PT5M"
+        metric_resource_id = azurerm_linux_virtual_machine_scale_set.vmss.id
       }
 
       scale_action {
