@@ -6,7 +6,7 @@ provider "azurerm" {
 
 # 1. Tạo Resource Group
 resource "azurerm_resource_group" "rg" {
-  name     = "my-webapp-rg"
+  name     = "TerraGroup"
   location = "East Asia"
 }
 
@@ -69,42 +69,6 @@ resource "azurerm_lb_rule" "lb_rule" {
 }
 
 # Tạo Virtual Machine Scale Set (VMSS)
-resource "azurerm_linux_virtual_machine_scale_set" "vmss" {
-  name                = "myVMSS"
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
-  sku                 = "Standard_DS1_v2"
-  instances           = 2
-  admin_username      = "adminuser"
-  admin_password      = "StrongP@ssw0rd123!"  
-  disable_password_authentication = false  # ⚠️ Cho phép đăng nhập bằng mật khẩu
-
-  source_image_reference {
-    publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "18.04-LTS"
-    version   = "latest"
-  }
-
-  os_disk {
-    caching              = "ReadWrite"
-    storage_account_type = "Standard_LRS"
-  }
-
-  network_interface {
-    name    = "vmss-nic"
-    primary = true
-
-    ip_configuration {
-      name                                   = "internal"
-      primary                                = true
-      subnet_id                              = azurerm_subnet.subnet.id
-      load_balancer_backend_address_pool_ids = [azurerm_lb_backend_address_pool.lb_backend.id]
-    }
-  }
-}
-
-# Autoscale Rule - Mở rộng khi CPU > 75%
 resource "azurerm_monitor_autoscale_setting" "autoscale" {
   name                = "autoscale-vmss"
   resource_group_name = azurerm_resource_group.rg.name
@@ -129,6 +93,7 @@ resource "azurerm_monitor_autoscale_setting" "autoscale" {
         operator           = "GreaterThan"
         threshold          = 75
         time_aggregation   = "Average"
+        time_window        = "PT5M"
       }
 
       scale_action {
@@ -148,6 +113,7 @@ resource "azurerm_monitor_autoscale_setting" "autoscale" {
         operator           = "LessThan"
         threshold          = 25
         time_aggregation   = "Average"
+        time_window        = "PT5M"
       }
 
       scale_action {
