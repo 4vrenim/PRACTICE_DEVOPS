@@ -73,7 +73,7 @@ resource "azurerm_linux_virtual_machine_scale_set" "vmss" {
   name                = "my-vmss"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
-  sku                 = "Standard B1ms"
+  sku                 = "Standard_B1ms"
   instances           = 2
   admin_username      = "azureuser"
   admin_password      = "YourSecurePassword123!"  # 🛠 Nếu dùng password thay vì SSH key
