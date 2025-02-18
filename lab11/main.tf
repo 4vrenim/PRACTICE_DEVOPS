@@ -69,6 +69,41 @@ resource "azurerm_lb_rule" "lb_rule" {
 }
 
 # Tạo Virtual Machine Scale Set (VMSS)
+resource "azurerm_linux_virtual_machine_scale_set" "vmss" {
+  name                = "my-vmss"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  sku                 = "Standard B1ms"
+  instances           = 2
+  admin_username      = "azureuser"
+  admin_password      = "YourSecurePassword123!"  # 🛠 Nếu dùng password thay vì SSH key
+
+  disable_password_authentication = false  # 🛠 Cần đặt thành `false` nếu không dùng SSH key
+
+  network_interface {
+    name    = "vmss-nic"
+    primary = true
+
+    ip_configuration {
+      name      = "internal"
+      primary   = true
+      subnet_id = azurerm_subnet.vmss_subnet.id
+    }
+  }
+
+  os_disk {
+    storage_account_type = "Standard_LRS"
+    caching              = "ReadWrite"
+  }
+
+  source_image_reference {
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = "18.04-LTS"
+    version   = "latest"
+  }
+}
+
 resource "azurerm_monitor_autoscale_setting" "autoscale" {
   name                = "autoscale-vmss"
   resource_group_name = azurerm_resource_group.rg.name
