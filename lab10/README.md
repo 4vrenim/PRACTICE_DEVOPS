@@ -68,3 +68,31 @@ resource "azurerm_subnet_nat_gateway_association" "subnet_nat" {
   nat_gateway_id = azurerm_nat_gateway.nat_gw.id
 }
 ```
+-----
+* Khởi tạo Terraform
+>terraform init
+
+![image](https://github.com/user-attachments/assets/a928c48d-5e42-44c8-8591-729c98bfd7f2)
+
+* Kiểm tra cấu hình trước khi chạy
+>terraform plan
+
+![image](https://github.com/user-attachments/assets/01a65fb0-07c8-4d78-943b-b123af05a804)
+
+* Triển khai tài nguyên lên Azure
+>terraform apply -auto-approve
+
+![image](https://github.com/user-attachments/assets/6b318198-24fc-4f94-b2fe-4bb3aff77171)
+
+* Kiểm tra trên portal
+![image](https://github.com/user-attachments/assets/5a0c0425-cf50-48dd-aadc-610fd53c7404)
+
+* Xóa tài nguyên khi không cần thiết
+>terraform destroy -auto-approve
+
+
+
+
+
+
+
