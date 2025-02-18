@@ -48,13 +48,13 @@ resource "azurerm_lb" "lb" {
 }
 
 
-# Load Balancer Backend Pool
+# 5. Load Balancer Backend Pool
 resource "azurerm_lb_backend_address_pool" "lb_backend" {
   name            = "backendPool"
   loadbalancer_id = azurerm_lb.lb.id
 }
 
-# Load Balancer Rule
+# 6. Load Balancer Rule
 resource "azurerm_lb_rule" "lb_rule" {
   name                           = "http-rule"
   loadbalancer_id                = azurerm_lb.lb.id
@@ -68,7 +68,7 @@ resource "azurerm_lb_rule" "lb_rule" {
   load_distribution              = "Default"
 }
 
-# Tạo Virtual Machine Scale Set (VMSS)
+# 7. Tạo Virtual Machine Scale Set (VMSS)
 resource "azurerm_linux_virtual_machine_scale_set" "vmss" {
   name                = "my-vmss"
   resource_group_name = azurerm_resource_group.rg.name
@@ -87,7 +87,7 @@ resource "azurerm_linux_virtual_machine_scale_set" "vmss" {
     ip_configuration {
       name      = "internal"
       primary   = true
-      subnet_id = azurerm_subnet.vmss_subnet.id
+      subnet_id = azurerm_subnet.subnet.id
     }
   }
 
