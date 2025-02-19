@@ -53,3 +53,6 @@ docker build -t my-flask-app .
 
 * Kiểm tra pod
 >kubectl get pod "example pod" -o wide
+
+![image](https://github.com/user-attachments/assets/f0f10839-50f8-4635-a391-8ccbb05a3052)
+
