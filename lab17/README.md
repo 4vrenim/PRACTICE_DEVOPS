@@ -44,3 +44,17 @@ spec:
 kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
 ```
+
+* Kiểm tra deployment và service
+```
+kubectl get pods
+kubectl get services
+```
+
+* Lấy địa chỉ truy cập và kiểm tra 
+>minikube service flask-service --url
+
+![image](https://github.com/user-attachments/assets/bcd2b97e-836c-4177-ab0a-00cead01ee8d)
+
+
+
