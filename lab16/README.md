@@ -1,4 +1,4 @@
-# Cài đặt một Kubernetes cluster sử dụng Minikube và triển khai một ứng dụng web đơn giản lên cluster
+# Lab 16: Cài đặt một Kubernetes cluster sử dụng Minikube và triển khai một ứng dụng web đơn giản lên cluster.
 * Cài Minikube
 ```
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
@@ -20,7 +20,7 @@ sudo mv kubectl /usr/local/bin/
 
 ![image](https://github.com/user-attachments/assets/f6280310-0f6b-4e7e-a089-e9c6161aa04d)
 ---
-* Triển khai Ứng dụng Web đơn giản
+## Triển khai Ứng dụng Web đơn giản
 Sử dụng một ứng dụng Flask nhỏ chạy trong Docker
 * Dockerfile
 ```
