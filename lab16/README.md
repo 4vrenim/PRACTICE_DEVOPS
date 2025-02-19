@@ -10,15 +10,15 @@ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stabl
 chmod +x kubectl
 sudo mv kubectl /usr/local/bin/
 ```
-* Khởi động Minikube
->minikube start --driver=docker
+* Khởi động Minikube và tạo cluster 3 node
+>minikube start --nodes 3 -p minikube-demo --driver=docker
 
-![image](https://github.com/user-attachments/assets/02461903-6710-4be4-bb22-b1b88af1b283)
+![image](https://github.com/user-attachments/assets/b3fed113-bbae-40ab-9606-b04e3afa9754)
 
 * Kiểm tra cluster
 >kubectl get nodes
 
-![image](https://github.com/user-attachments/assets/f6280310-0f6b-4e7e-a089-e9c6161aa04d)
+![image](https://github.com/user-attachments/assets/76b24fd7-3958-4d00-b631-6a488bc420fe)
 ---
 ## Triển khai Ứng dụng Web đơn giản
 Sử dụng một ứng dụng Flask nhỏ chạy trong Docker
