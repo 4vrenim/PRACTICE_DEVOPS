@@ -63,4 +63,15 @@ spec:
 * Áp dụng và kiểm tra
 >kubectl apply -f hpa.yaml  
 >kubectl get hpa
+---
+## Tạo Tải CPU và kiểm tra
+* Tạo pod busybox
+>kubectl run -i --tty load-generator --image=busybox -- /bin/sh
 
+* Trong terminal BusyBox, chạy vòng lặp request
+>while true; do wget -q -O- http://flask-service.default.svc.cluster.local/; done
+
+* Theo dõi HPA xem số lượng pod tăng khi cpu vượt ngưỡng
+>kubectl get hpa flask-hpa --watch
+
+![image](https://github.com/user-attachments/assets/9366a073-4ea0-402e-aa81-c947453d47df)
