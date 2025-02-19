@@ -1,11 +1,11 @@
 # Lab 18: Cấu hình Horizontal Pod Autoscaler (HPA) cho ứng dụng trên Kubernetes để tự động mở rộng số lượng Pod dựa trên tải công việc
 * Cài đặt Metrics Server để thu thập dữ liệu CPU/Memory
->kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+>minikube addons enable metrics-server
 
 * Kiểm tra xem Metrics Server đã chạy chưa
 >kubectl get deployment metrics-server -n kube-system
 
-![image](https://github.com/user-attachments/assets/5a9ed59c-e382-40cb-aecc-449e3c26799b)
+![image](https://github.com/user-attachments/assets/bcae0a61-2f87-4ee5-ab93-1cb7e820a8cb)
 
 * Cập nhật file deployment.yaml để sử dụng Resource Limits
 ```
