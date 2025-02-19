@@ -57,7 +57,7 @@ spec:
       name: cpu
       target:
         type: Utilization
-        averageUtilization: 50  # Mở rộng khi CPU vượt 50%
+        averageUtilization: 30  # Mở rộng khi CPU vượt 30%
 ```
 
 * Áp dụng và kiểm tra
