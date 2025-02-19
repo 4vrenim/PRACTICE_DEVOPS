@@ -48,3 +48,8 @@ if __name__ == '__main__':
 eval $(minikube docker-env)  # Sử dụng Docker của Minikube
 docker build -t my-flask-app .
 ```
+* Tạo pod
+>kubectl run "example pod" --image=my-flask-app --image-pull-policy Never
+
+* Kiểm tra pod
+>kubectl get pod "example pod" -o wide
