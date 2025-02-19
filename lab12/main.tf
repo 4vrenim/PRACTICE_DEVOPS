@@ -162,3 +162,13 @@ resource "azurerm_monitor_autoscale_setting" "autoscale" {
     }
   }
 }
+
+terraform {
+  backend "azurerm" {
+    resource_group_name   = "terraform-state-rg"    # Resource Group chứa Storage Account
+    storage_account_name  = "your-storage-account-name"  # Thay bằng STORAGE_ACCOUNT_NAME đã tạo
+    container_name        = "tfstate"              # Tên Blob Container
+    key                  = "terraform.tfstate"     # Định danh file state trong container
+  }
+}
+
