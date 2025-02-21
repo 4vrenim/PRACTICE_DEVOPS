@@ -1,0 +1,56 @@
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  APP_NAME: "my-web-app"
+
+build:
+  stage: build
+  tags:
+    - lab13
+  before_script:
+    - cd /repo/gitlab/lab13
+    - rm -f package* index*
+    - rm -Rf node_modules/
+    - cp /repo/gitlab/package.json .
+    - cp /repo/gitlab/index.js .
+  script:
+    - echo "Building the application..."
+    - npm install express --save
+  artifacts:
+    paths:
+      - build/
+
+test:
+  stage: test
+  script:
+    - echo "Running tests..."
+    - npm run start &
+    - echo `curl http://23.102.228.21:3000/`
+
+deploy:
+  stage: deploy
+  tags:
+    - lab13
+  before_script:
+    - cd /repo/gitlab/lab13
+    #- kill -9 $(pgrep -f 'node index.js')
+    #- sleep 60
+  script:
+    - echo "Deploying the application..."
+    - git add .
+    - git commit -m "new deploy"
+    - |     
+      CHANGES=$(git status --porcelain | wc -l)
+      if [[ "${CHANGES}" -gt 0 ]]; then
+        echo "Committing updated files to git"
+        git add .
+        git commit -m "Updated with new running date"
+        git push "https://${GITLAB_USER_NAME}:${CI_ACCESS_TOKEN}@${CI_REPOSITORY_URL#*@}" "HEAD:${CI_COMMIT_REF_NAME}" -o skip-ci
+      else
+        echo "Nothing to commit"
+      fi
+  only:
+    - main
