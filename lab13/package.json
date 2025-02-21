@@ -1,0 +1,23 @@
+{
+  "name": "lab13",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/Avrenim/lab13.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/Avrenim/lab13/issues"
+  },
+  "homepage": "https://gitlab.com/Avrenim/lab13#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
