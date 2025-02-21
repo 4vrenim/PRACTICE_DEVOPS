@@ -42,15 +42,6 @@ deploy:
     - echo "Deploying the application..."
     - git add .
     - git commit -m "new deploy"
-    - |     
-      CHANGES=$(git status --porcelain | wc -l)
-      if [[ "${CHANGES}" -gt 0 ]]; then
-        echo "Committing updated files to git"
-        git add .
-        git commit -m "Updated with new running date"
-        git push "https://${GITLAB_USER_NAME}:${CI_ACCESS_TOKEN}@${CI_REPOSITORY_URL#*@}" "HEAD:${CI_COMMIT_REF_NAME}" -o skip-ci
-      else
-        echo "Nothing to commit"
-      fi
+    - git push
   only:
     - main
