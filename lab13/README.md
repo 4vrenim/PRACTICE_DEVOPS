@@ -1,5 +1,9 @@
 # Lab 13: Thiết lập một pipeline CI/CD trên GitLab để tự động xây dựng, kiểm tra và triển khai một ứng dụng web
 ## Triển khai 1 Pipeline deploy web nodejs đơn giản
+* Build: Cài module mới hoặc update file index.js
+* Test: Truy cập web xem nội dung
+* Deploy: Deploy code lên gitlab
+---
 1. Tạo project lab13 trên gitlab
 2. Tạo gitlab runner với tag lab13
 3. Install gitlab runner trên vm host
