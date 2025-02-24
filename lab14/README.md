@@ -1,5 +1,6 @@
 # Lab 14: Tạo một Jenkins pipeline để thực hiện các bước xây dựng, kiểm tra và triển khai ứng dụng Docker
 
+* Cài đặt sshpass
 * Cài đặt Java
 ```
 sudo apt update
@@ -92,3 +93,14 @@ pipeline {
 ```
 
 ![image](https://github.com/user-attachments/assets/bda9702b-69a5-4a64-9385-b3db4440cf42)
+
+* Vào Dashboard -> Manage Jenkins -> Credentials tạo 2 credentials : docker-hub-credentials (thông tin truy cập Dockerhub) và ssh-deploy (thông tin user deploy để ssh)
+![image](https://github.com/user-attachments/assets/6bcf17f7-3e20-41b8-867d-c6500520646a)
+
+* Chạy Build Now
+![image](https://github.com/user-attachments/assets/0d5bebf5-51a0-4ef0-b887-40fe4e32892c)
+
+![image](https://github.com/user-attachments/assets/e2e98663-984f-4c4d-ae87-9d722c4e5b4d)
+
+
+
