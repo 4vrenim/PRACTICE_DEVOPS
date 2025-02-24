@@ -51,7 +51,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/4vrenim/practice_jenkin.git'
+                git branch: 'main', url: 'https://github.com/<your-github-name>/<your-repo>.git'
             }
         }
 
