@@ -3,34 +3,33 @@ name: Python CI/CD
 on:
   push:
     branches:
-      - main  # hoặc tên nhánh bạn muốn chạy workflow này
+      - main  # Trigger on push to main branch
   pull_request:
     branches:
-      - main  # hoặc tên nhánh bạn muốn chạy workflow này
+      - main  # Trigger on pull requests targeting the main branch
 
 jobs:
   test:
-    runs-on: ubuntu-latest  # Chạy trên môi trường Ubuntu mới nhất
+    runs-on: ubuntu-latest  # Use the latest Ubuntu environment
 
     steps:
-      # Step 1: Checkout mã nguồn
+      # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Step 2: Cài đặt Python
+      # Step 2: Set up Python
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.8'  # Chọn phiên bản Python bạn muốn
+          python-version: '3.8'
 
-      # Step 3: Cài đặt các dependencies
+      # Step 3: Install dependencies
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt  # Đảm bảo bạn đã có file requirements.txt trong dự án
+          pip install -r requirements.txt
 
-      # Step 4: Kiểm tra mã nguồn bằng pytest
+      # Step 4: Run tests with pytest
       - name: Run tests with pytest
         run: |
-          pytest  # Chạy pytest để kiểm tra mã nguồn
-
+          pytest  # Run pytest to test the code
