@@ -1,0 +1,190 @@
+Started by user Duong Phu Binh
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/flask
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Login to Docker Hub)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] withCredentials
+Masking supported pattern matches of $DOCKER_USER or $DOCKER_PASS
+[Pipeline] {
+[Pipeline] sh
++ docker login -u **** -p ****
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+WARNING! Your password will be stored unencrypted in /var/lib/jenkins/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credential-stores
+
+Login Succeeded
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] git
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/flask/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/4vrenim/practice_jenkin.git # timeout=10
+Fetching upstream changes from https://github.com/4vrenim/practice_jenkin.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.34.1'
+ > git fetch --tags --force --progress -- https://github.com/4vrenim/practice_jenkin.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision d5dda9bfded420a6ece3900b4b58f4dbdb7284b2 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f d5dda9bfded420a6ece3900b4b58f4dbdb7284b2 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D main # timeout=10
+ > git checkout -b main d5dda9bfded420a6ece3900b4b58f4dbdb7284b2 # timeout=10
+Commit message: "Update Dockerfile"
+ > git rev-list --no-walk d5dda9bfded420a6ece3900b4b58f4dbdb7284b2 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build Docker Image)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ docker build -t avrenim/flask-web-app:latest .
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 532B done
+#1 DONE 0.0s
+
+#2 [auth] library/python:pull token for registry-1.docker.io
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.9-slim
+#3 DONE 1.5s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [1/5] FROM docker.io/library/python:3.9-slim@sha256:f9364cd6e0c146966f8f23fc4fd85d53f2e604bdde74e3c06565194dc4a02f85
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 10.82kB done
+#6 DONE 0.0s
+
+#7 [2/5] WORKDIR /app
+#7 CACHED
+
+#8 [3/5] COPY requirements.txt /app/
+#8 CACHED
+
+#9 [4/5] RUN pip install --no-cache-dir -r requirements.txt
+#9 CACHED
+
+#10 [5/5] COPY . /app/
+#10 DONE 0.8s
+
+#11 exporting to image
+#11 exporting layers
+#11 exporting layers 0.4s done
+#11 writing image sha256:f5294b4b4840a25b6ffa603384572a3a5f8466898d941c1d8e02276f0cdff02b
+#11 writing image sha256:f5294b4b4840a25b6ffa603384572a3a5f8466898d941c1d8e02276f0cdff02b 0.0s done
+#11 naming to docker.io/avrenim/flask-web-app:latest 0.0s done
+#11 DONE 0.4s
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test Application)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ docker run --rm avrenim/flask-web-app:latest
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Push to Docker Hub)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ docker push avrenim/flask-web-app:latest
+The push refers to repository [docker.io/avrenim/flask-web-app]
+9713531cbff0: Preparing
+0fb2dcceac34: Preparing
+3664de2174a0: Preparing
+ff1442702d65: Preparing
+6022e9b5727d: Preparing
+e0dfbff797f9: Preparing
+0eaf13317391: Preparing
+7914c8f600f5: Preparing
+e0dfbff797f9: Waiting
+0eaf13317391: Waiting
+7914c8f600f5: Waiting
+ff1442702d65: Layer already exists
+0fb2dcceac34: Layer already exists
+6022e9b5727d: Layer already exists
+3664de2174a0: Layer already exists
+e0dfbff797f9: Layer already exists
+0eaf13317391: Layer already exists
+7914c8f600f5: Layer already exists
+9713531cbff0: Pushed
+latest: digest: sha256:f07618998bbffb9e278fd453087d5fbb053a6e6083083add127312d64c17c241 size: 1992
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy to Server)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] withCredentials
+Masking supported pattern matches of $SSH_USER or $SSH_PASS
+[Pipeline] {
+[Pipeline] sh
+Warning: A secret was passed to "sh" using Groovy String interpolation, which is insecure.
+		 Affected argument(s) used the following variable(s): [SSH_USER, SSH_PASS]
+		 See https://jenkins.io/redirect/groovy-string-interpolation for details.
++ sshpass -p **** ssh -o StrictHostKeyChecking=no ****@23.102.228.21 docker pull avrenim/flask-web-app:latest && docker run -d --restart=always -p 5050:5050 avrenim/flask-web-app:latest
+latest: Pulling from avrenim/flask-web-app
+d2eb42b4a5eb: Already exists
+9315c4821e72: Already exists
+7e8ac65e25aa: Already exists
+b26995e9f45f: Already exists
+d2abab2da38c: Already exists
+da966a003c7f: Pulling fs layer
+a029f7978d6e: Pulling fs layer
+5fdbc1fe2b75: Pulling fs layer
+5fdbc1fe2b75: Verifying Checksum
+5fdbc1fe2b75: Download complete
+da966a003c7f: Verifying Checksum
+da966a003c7f: Download complete
+a029f7978d6e: Verifying Checksum
+a029f7978d6e: Download complete
+da966a003c7f: Pull complete
+a029f7978d6e: Pull complete
+5fdbc1fe2b75: Pull complete
+Digest: sha256:f07618998bbffb9e278fd453087d5fbb053a6e6083083add127312d64c17c241
+Status: Downloaded newer image for avrenim/flask-web-app:latest
+docker.io/avrenim/flask-web-app:latest
+3ce853ddb03b8baa3722c57007cc1d7701f7f005f426d822b8154317a66e91cd
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
