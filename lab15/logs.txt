@@ -1,0 +1,216 @@
+2025-02-24T13:37:49.9030687Z Current runner version: '2.322.0'
+2025-02-24T13:37:49.9057445Z ##[group]Operating System
+2025-02-24T13:37:49.9058324Z Ubuntu
+2025-02-24T13:37:49.9058859Z 24.04.1
+2025-02-24T13:37:49.9059329Z LTS
+2025-02-24T13:37:49.9059841Z ##[endgroup]
+2025-02-24T13:37:49.9060568Z ##[group]Runner Image
+2025-02-24T13:37:49.9061139Z Image: ubuntu-24.04
+2025-02-24T13:37:49.9061727Z Version: 20250209.1.0
+2025-02-24T13:37:49.9062724Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20250209.1/images/ubuntu/Ubuntu2404-Readme.md
+2025-02-24T13:37:49.9064128Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20250209.1
+2025-02-24T13:37:49.9065065Z ##[endgroup]
+2025-02-24T13:37:49.9065599Z ##[group]Runner Image Provisioner
+2025-02-24T13:37:49.9066218Z 2.0.422.1
+2025-02-24T13:37:49.9066772Z ##[endgroup]
+2025-02-24T13:37:49.9067864Z ##[group]GITHUB_TOKEN Permissions
+2025-02-24T13:37:49.9070612Z Contents: read
+2025-02-24T13:37:49.9071205Z Metadata: read
+2025-02-24T13:37:49.9072000Z Packages: read
+2025-02-24T13:37:49.9072601Z ##[endgroup]
+2025-02-24T13:37:49.9076029Z Secret source: Actions
+2025-02-24T13:37:49.9076983Z Prepare workflow directory
+2025-02-24T13:37:49.9414891Z Prepare all required actions
+2025-02-24T13:37:49.9453305Z Getting action download info
+2025-02-24T13:37:50.1739771Z ##[group]Download immutable action package 'actions/checkout@v2'
+2025-02-24T13:37:50.1741063Z Version: 2.7.0
+2025-02-24T13:37:50.1742196Z Digest: sha256:95d28907bc868c0bab52f05f1f84cf8416c9415fba4c92519bc0b83bdce1eae3
+2025-02-24T13:37:50.1743364Z Source commit SHA: ee0669bd1cc54295c223e0bb666b733df41de1c5
+2025-02-24T13:37:50.1744192Z ##[endgroup]
+2025-02-24T13:37:50.2677580Z ##[group]Download immutable action package 'actions/setup-python@v4'
+2025-02-24T13:37:50.2678479Z Version: 4.8.0
+2025-02-24T13:37:50.2679207Z Digest: sha256:7e597ce284e0b40cf85abcb7aa2474fa843336422b823ce21b6643f3a262b88d
+2025-02-24T13:37:50.2680415Z Source commit SHA: b64ffcaf5b410884ad320a9cfac8866006a109aa
+2025-02-24T13:37:50.2681197Z ##[endgroup]
+2025-02-24T13:37:50.4218974Z Complete job name: test
+2025-02-24T13:37:50.4951113Z ##[group]Run actions/checkout@v2
+2025-02-24T13:37:50.4952025Z with:
+2025-02-24T13:37:50.4952470Z   repository: 4vrenim/practice_action
+2025-02-24T13:37:50.4953211Z   token: ***
+2025-02-24T13:37:50.4953629Z   ssh-strict: true
+2025-02-24T13:37:50.4954077Z   persist-credentials: true
+2025-02-24T13:37:50.4954557Z   clean: true
+2025-02-24T13:37:50.4954961Z   fetch-depth: 1
+2025-02-24T13:37:50.4955362Z   lfs: false
+2025-02-24T13:37:50.4955757Z   submodules: false
+2025-02-24T13:37:50.4956199Z   set-safe-directory: true
+2025-02-24T13:37:50.4956863Z ##[endgroup]
+2025-02-24T13:37:50.7280491Z Syncing repository: 4vrenim/practice_action
+2025-02-24T13:37:50.7282377Z ##[group]Getting Git version info
+2025-02-24T13:37:50.7283154Z Working directory is '/home/runner/work/practice_action/practice_action'
+2025-02-24T13:37:50.7284171Z [command]/usr/bin/git version
+2025-02-24T13:37:50.7368209Z git version 2.48.1
+2025-02-24T13:37:50.7399109Z ##[endgroup]
+2025-02-24T13:37:50.7420960Z Temporarily overriding HOME='/home/runner/work/_temp/d0a5d1ce-fc7c-4ed0-8f5b-2e10b644b148' before making global git config changes
+2025-02-24T13:37:50.7423441Z Adding repository directory to the temporary git global config as a safe directory
+2025-02-24T13:37:50.7425744Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/practice_action/practice_action
+2025-02-24T13:37:50.7470764Z Deleting the contents of '/home/runner/work/practice_action/practice_action'
+2025-02-24T13:37:50.7475368Z ##[group]Initializing the repository
+2025-02-24T13:37:50.7479506Z [command]/usr/bin/git init /home/runner/work/practice_action/practice_action
+2025-02-24T13:37:50.7588052Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-02-24T13:37:50.7589760Z hint: is subject to change. To configure the initial branch name to use in all
+2025-02-24T13:37:50.7591456Z hint: of your new repositories, which will suppress this warning, call:
+2025-02-24T13:37:50.7592864Z hint:
+2025-02-24T13:37:50.7593625Z hint: 	git config --global init.defaultBranch <name>
+2025-02-24T13:37:50.7594416Z hint:
+2025-02-24T13:37:50.7594969Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-02-24T13:37:50.7595854Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-02-24T13:37:50.7596546Z hint:
+2025-02-24T13:37:50.7596925Z hint: 	git branch -m <name>
+2025-02-24T13:37:50.7597732Z Initialized empty Git repository in /home/runner/work/practice_action/practice_action/.git/
+2025-02-24T13:37:50.7608800Z [command]/usr/bin/git remote add origin https://github.com/4vrenim/practice_action
+2025-02-24T13:37:50.7649218Z ##[endgroup]
+2025-02-24T13:37:50.7650334Z ##[group]Disabling automatic garbage collection
+2025-02-24T13:37:50.7653179Z [command]/usr/bin/git config --local gc.auto 0
+2025-02-24T13:37:50.7683570Z ##[endgroup]
+2025-02-24T13:37:50.7684498Z ##[group]Setting up auth
+2025-02-24T13:37:50.7690468Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-02-24T13:37:50.7721710Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-02-24T13:37:50.8102386Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-02-24T13:37:50.8132195Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-02-24T13:37:50.8372425Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-02-24T13:37:50.8416843Z ##[endgroup]
+2025-02-24T13:37:50.8418179Z ##[group]Fetching the repository
+2025-02-24T13:37:50.8427000Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --progress --no-recurse-submodules --depth=1 origin +f215f2eff5558cd195f26f188d95c45cfef71368:refs/remotes/origin/main
+2025-02-24T13:37:51.3269574Z remote: Enumerating objects: 9, done.        
+2025-02-24T13:37:51.3271001Z remote: Counting objects:  11% (1/9)        
+2025-02-24T13:37:51.3271924Z remote: Counting objects:  22% (2/9)        
+2025-02-24T13:37:51.3272925Z remote: Counting objects:  33% (3/9)        
+2025-02-24T13:37:51.3273782Z remote: Counting objects:  44% (4/9)        
+2025-02-24T13:37:51.3274442Z remote: Counting objects:  55% (5/9)        
+2025-02-24T13:37:51.3275089Z remote: Counting objects:  66% (6/9)        
+2025-02-24T13:37:51.3275736Z remote: Counting objects:  77% (7/9)        
+2025-02-24T13:37:51.3276393Z remote: Counting objects:  88% (8/9)        
+2025-02-24T13:37:51.3277043Z remote: Counting objects: 100% (9/9)        
+2025-02-24T13:37:51.3278031Z remote: Counting objects: 100% (9/9), done.        
+2025-02-24T13:37:51.3278674Z remote: Compressing objects:  20% (1/5)        
+2025-02-24T13:37:51.3279291Z remote: Compressing objects:  40% (2/5)        
+2025-02-24T13:37:51.3280219Z remote: Compressing objects:  60% (3/5)        
+2025-02-24T13:37:51.3280849Z remote: Compressing objects:  80% (4/5)        
+2025-02-24T13:37:51.3281464Z remote: Compressing objects: 100% (5/5)        
+2025-02-24T13:37:51.3282173Z remote: Compressing objects: 100% (5/5), done.        
+2025-02-24T13:37:51.3282991Z remote: Total 9 (delta 0), reused 8 (delta 0), pack-reused 0 (from 0)        
+2025-02-24T13:37:51.3368500Z From https://github.com/4vrenim/practice_action
+2025-02-24T13:37:51.3369480Z  * [new ref]         f215f2eff5558cd195f26f188d95c45cfef71368 -> origin/main
+2025-02-24T13:37:51.3398305Z ##[endgroup]
+2025-02-24T13:37:51.3399119Z ##[group]Determining the checkout info
+2025-02-24T13:37:51.3400569Z ##[endgroup]
+2025-02-24T13:37:51.3401291Z ##[group]Checking out the ref
+2025-02-24T13:37:51.3404896Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2025-02-24T13:37:51.3451693Z Switched to a new branch 'main'
+2025-02-24T13:37:51.3455940Z branch 'main' set up to track 'origin/main'.
+2025-02-24T13:37:51.3461011Z ##[endgroup]
+2025-02-24T13:37:51.3496398Z [command]/usr/bin/git log -1 --format='%H'
+2025-02-24T13:37:51.3524777Z 'f215f2eff5558cd195f26f188d95c45cfef71368'
+2025-02-24T13:37:51.3775144Z ##[group]Run actions/setup-python@v4
+2025-02-24T13:37:51.3775709Z with:
+2025-02-24T13:37:51.3776076Z   python-version: 3.8
+2025-02-24T13:37:51.3776497Z   check-latest: false
+2025-02-24T13:37:51.3777056Z   token: ***
+2025-02-24T13:37:51.3777441Z   update-environment: true
+2025-02-24T13:37:51.3777893Z   allow-prereleases: false
+2025-02-24T13:37:51.3778327Z ##[endgroup]
+2025-02-24T13:37:51.5071719Z ##[group]Installed versions
+2025-02-24T13:37:51.5120838Z Version 3.8 was not found in the local cache
+2025-02-24T13:37:52.1648895Z Version 3.8 is available for downloading
+2025-02-24T13:37:52.1653103Z Download from "https://github.com/actions/python-versions/releases/download/3.8.18-12303122501/python-3.8.18-linux-24.04-x64.tar.gz"
+2025-02-24T13:37:53.1562940Z Extract downloaded archive
+2025-02-24T13:37:53.1669444Z [command]/usr/bin/tar xz --warning=no-unknown-keyword -C /home/runner/work/_temp/76a1ddda-6075-45de-8ec9-654d15d415d7 -f /home/runner/work/_temp/a24ca4d7-8018-4056-87ba-1e625a5a45af
+2025-02-24T13:37:54.4930793Z Execute installation script
+2025-02-24T13:37:54.5032789Z Check if Python hostedtoolcache folder exist...
+2025-02-24T13:37:54.5033452Z Create Python 3.8.18 folder
+2025-02-24T13:37:54.5065149Z Copy Python binaries to hostedtoolcache folder
+2025-02-24T13:37:54.9800640Z Create additional symlinks (Required for the UsePythonVersion Azure Pipelines task and the setup-python GitHub Action)
+2025-02-24T13:37:54.9845182Z Upgrading pip...
+2025-02-24T13:37:56.7708985Z Looking in links: /tmp/tmpf98aw1hw
+2025-02-24T13:37:56.7712834Z Requirement already satisfied: setuptools in /opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages (56.0.0)
+2025-02-24T13:37:56.7717899Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages (23.0.1)
+2025-02-24T13:37:57.8347884Z Collecting pip
+2025-02-24T13:37:57.8961459Z Downloading pip-25.0.1-py3-none-any.whl (1.8 MB)
+2025-02-24T13:37:57.9559358Z ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 32.3 MB/s eta 0:00:00
+2025-02-24T13:37:57.9560112Z 
+2025-02-24T13:37:57.9899528Z Installing collected packages: pip
+2025-02-24T13:37:57.9900601Z Attempting uninstall: pip
+2025-02-24T13:37:57.9906480Z Found existing installation: pip 23.0.1
+2025-02-24T13:37:58.1764575Z Uninstalling pip-23.0.1:
+2025-02-24T13:37:58.1835132Z Successfully uninstalled pip-23.0.1
+2025-02-24T13:37:58.8938806Z Successfully installed pip-25.0.1
+2025-02-24T13:37:58.9511952Z Create complete file
+2025-02-24T13:37:58.9562655Z Successfully set up CPython (3.8.18)
+2025-02-24T13:37:58.9563549Z ##[endgroup]
+2025-02-24T13:37:58.9696502Z ##[group]Run python -m pip install --upgrade pip
+2025-02-24T13:37:58.9696963Z [36;1mpython -m pip install --upgrade pip[0m
+2025-02-24T13:37:58.9697327Z [36;1mpip install -r requirements.txt[0m
+2025-02-24T13:37:58.9898573Z shell: /usr/bin/bash -e {0}
+2025-02-24T13:37:58.9898885Z env:
+2025-02-24T13:37:58.9899190Z   pythonLocation: /opt/hostedtoolcache/Python/3.8.18/x64
+2025-02-24T13:37:58.9899646Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.8.18/x64/lib/pkgconfig
+2025-02-24T13:37:58.9900287Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.8.18/x64
+2025-02-24T13:37:58.9900684Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.8.18/x64
+2025-02-24T13:37:58.9901082Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.8.18/x64
+2025-02-24T13:37:58.9901487Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.8.18/x64/lib
+2025-02-24T13:37:58.9901830Z ##[endgroup]
+2025-02-24T13:37:59.3555957Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages (25.0.1)
+2025-02-24T13:37:59.9902672Z Collecting pytest (from -r requirements.txt (line 1))
+2025-02-24T13:38:00.0249446Z   Downloading pytest-8.3.4-py3-none-any.whl.metadata (7.5 kB)
+2025-02-24T13:38:00.0532234Z Collecting exceptiongroup>=1.0.0rc8 (from pytest->-r requirements.txt (line 1))
+2025-02-24T13:38:00.0647270Z   Downloading exceptiongroup-1.2.2-py3-none-any.whl.metadata (6.6 kB)
+2025-02-24T13:38:00.0875540Z Collecting iniconfig (from pytest->-r requirements.txt (line 1))
+2025-02-24T13:38:00.0984309Z   Downloading iniconfig-2.0.0-py3-none-any.whl.metadata (2.6 kB)
+2025-02-24T13:38:00.1272594Z Collecting packaging (from pytest->-r requirements.txt (line 1))
+2025-02-24T13:38:00.1382790Z   Downloading packaging-24.2-py3-none-any.whl.metadata (3.2 kB)
+2025-02-24T13:38:00.1621006Z Collecting pluggy<2,>=1.5 (from pytest->-r requirements.txt (line 1))
+2025-02-24T13:38:00.1729650Z   Downloading pluggy-1.5.0-py3-none-any.whl.metadata (4.8 kB)
+2025-02-24T13:38:00.2124606Z Collecting tomli>=1 (from pytest->-r requirements.txt (line 1))
+2025-02-24T13:38:00.2233590Z   Downloading tomli-2.2.1-py3-none-any.whl.metadata (10 kB)
+2025-02-24T13:38:00.2430081Z Downloading pytest-8.3.4-py3-none-any.whl (343 kB)
+2025-02-24T13:38:00.2822142Z Downloading exceptiongroup-1.2.2-py3-none-any.whl (16 kB)
+2025-02-24T13:38:00.2953223Z Downloading pluggy-1.5.0-py3-none-any.whl (20 kB)
+2025-02-24T13:38:00.3096024Z Downloading tomli-2.2.1-py3-none-any.whl (14 kB)
+2025-02-24T13:38:00.3231479Z Downloading iniconfig-2.0.0-py3-none-any.whl (5.9 kB)
+2025-02-24T13:38:00.3358918Z Downloading packaging-24.2-py3-none-any.whl (65 kB)
+2025-02-24T13:38:00.3605788Z Installing collected packages: tomli, pluggy, packaging, iniconfig, exceptiongroup, pytest
+2025-02-24T13:38:00.6126059Z Successfully installed exceptiongroup-1.2.2 iniconfig-2.0.0 packaging-24.2 pluggy-1.5.0 pytest-8.3.4 tomli-2.2.1
+2025-02-24T13:38:00.6583419Z ##[group]Run pytest  # Run pytest to test the code
+2025-02-24T13:38:00.6583819Z [36;1mpytest  # Run pytest to test the code[0m
+2025-02-24T13:38:00.6643382Z shell: /usr/bin/bash -e {0}
+2025-02-24T13:38:00.6643624Z env:
+2025-02-24T13:38:00.6643870Z   pythonLocation: /opt/hostedtoolcache/Python/3.8.18/x64
+2025-02-24T13:38:00.6644293Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.8.18/x64/lib/pkgconfig
+2025-02-24T13:38:00.6644704Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.8.18/x64
+2025-02-24T13:38:00.6645074Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.8.18/x64
+2025-02-24T13:38:00.6645416Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.8.18/x64
+2025-02-24T13:38:00.6645773Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.8.18/x64/lib
+2025-02-24T13:38:00.6646102Z ##[endgroup]
+2025-02-24T13:38:00.8809752Z ============================= test session starts ==============================
+2025-02-24T13:38:00.8810794Z platform linux -- Python 3.8.18, pytest-8.3.4, pluggy-1.5.0
+2025-02-24T13:38:00.8811498Z rootdir: /home/runner/work/practice_action/practice_action
+2025-02-24T13:38:00.8812059Z collected 1 item
+2025-02-24T13:38:00.8812291Z 
+2025-02-24T13:38:00.8830877Z test_app.py .                                                            [100%]
+2025-02-24T13:38:00.8831620Z 
+2025-02-24T13:38:00.8832030Z ============================== 1 passed in 0.01s ===============================
+2025-02-24T13:38:00.9076431Z Post job cleanup.
+2025-02-24T13:38:01.0294875Z Post job cleanup.
+2025-02-24T13:38:01.1219332Z [command]/usr/bin/git version
+2025-02-24T13:38:01.1257731Z git version 2.48.1
+2025-02-24T13:38:01.1302143Z Temporarily overriding HOME='/home/runner/work/_temp/77e2cccb-7c50-4196-b00b-fd46f353f5d9' before making global git config changes
+2025-02-24T13:38:01.1303453Z Adding repository directory to the temporary git global config as a safe directory
+2025-02-24T13:38:01.1306958Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/practice_action/practice_action
+2025-02-24T13:38:01.1341218Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-02-24T13:38:01.1372692Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-02-24T13:38:01.1609103Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-02-24T13:38:01.1631182Z http.https://github.com/.extraheader
+2025-02-24T13:38:01.1641677Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2025-02-24T13:38:01.1674259Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-02-24T13:38:01.2038080Z Cleaning up orphan processes
