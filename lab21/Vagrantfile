@@ -1,0 +1,91 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/focal64"
+  config.vm.hostname = "prometheus-nginx"
+  
+  # Set static IP
+  config.vm.network "private_network", ip: "192.168.56.10"
+  
+  # Forward ports
+  config.vm.network "forwarded_port", guest: 9090, host: 9090  # Prometheus
+  config.vm.network "forwarded_port", guest: 80, host: 8080    # Nginx
+  
+  # Provider configuration
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "2048"
+    vb.cpus = 2
+    vb.name = "prometheus-nginx-vm"
+  end
+  
+  # Copy the compose.yml file to the VM
+  config.vm.provision "file", source: "./compose.yml", destination: "~/compose.yml"
+  
+  # Copy custom index.html file to the VM
+  config.vm.provision "file", source: "./index.html", destination: "~/index.html"
+  
+  # Copy nginx configuration file to the VM
+  config.vm.provision "file", source: "./nginx-status.conf", destination: "~/nginx-status.conf"
+  
+  # Install Docker, Docker Compose, and set up the environment
+  config.vm.provision "shell", inline: <<-SHELL
+    # Update and install necessary packages
+    apt-get update
+    apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+
+    # Add Docker's official GPG key
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+    
+    # Add Docker repository
+    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+    
+    # Install Docker
+    apt-get update
+    apt-get install -y docker-ce docker-ce-cli containerd.io
+    
+    # Install Docker Compose
+    curl -L "https://github.com/docker/compose/releases/download/v2.18.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    chmod +x /usr/local/bin/docker-compose
+    
+    # Create directories for persistent data
+    mkdir -p /opt/prometheus/data
+    mkdir -p /opt/nginx/html
+    mkdir -p /opt/nginx/conf.d
+    
+    # Copy the custom index.html to the nginx directory
+    cp /home/vagrant/index.html /opt/nginx/html/
+    
+    # Copy the nginx configuration file
+    cp /home/vagrant/nginx-status.conf /opt/nginx/conf.d/default.conf
+    
+    # Create Prometheus configuration file
+    cat > /opt/prometheus/prometheus.yml << 'EOF'
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+  
+  - job_name: 'nginx'
+    static_configs:
+      - targets: ['nginx-exporter:9113']
+EOF
+    
+    # Add the current user to the docker group to run docker without sudo
+    usermod -aG docker vagrant
+    
+    # Start the Docker service
+    systemctl enable docker
+    systemctl start docker
+    
+    # Start containers using Docker Compose
+    cd /home/vagrant && docker-compose -f compose.yml up -d
+    
+    echo "Setup completed. You can access:"
+    echo "Prometheus: http://192.168.56.10:9090"
+    echo "Nginx: http://192.168.56.10:80"
+  SHELL
+end
