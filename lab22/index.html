@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nginx with Prometheus Monitoring</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            color: #0066cc;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .links {
+            margin-top: 20px;
+        }
+
+        .links a {
+            display: inline-block;
+            margin-right: 15px;
+            text-decoration: none;
+            color: #0066cc;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to Nginx with Prometheus Monitoring</h1>
+        <p>This is a custom Nginx page that is being monitored by Prometheus using nginx-exporter.</p>
+        <p>The setup includes:</p>
+        <ul>
+            <li>An Nginx web server (this page)</li>
+            <li>Nginx-exporter to collect metrics</li>
+            <li>Prometheus to store and visualize metrics</li>
+        </ul>
+        <div class="links">
+            <a href="http://192.168.56.10:9090">Access Prometheus</a>
+            <a href="http://192.168.56.10:9113/metrics">View Nginx Metrics</a>
+            <a href="http://192.168.56.10:3000">Access Grafana</a>
+        </div>
+    </div>
+</body>
+
+</html>
