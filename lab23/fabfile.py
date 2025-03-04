@@ -3,16 +3,15 @@ import os
 import subprocess
 
 # --- Configuration ---
-SERVER_HOST = "192.168.33.10"
-SERVER_USER = "vagrant"
-SSH_PRIVATE_KEY_PATH = "E:/vagrant_project/.vagrant/machines/default/virtualbox/private_key"
-DEPLOY_PATH = "/var/www/python_project"
-GIT_REPO_URL = "https://github.com/4vrenim/practice_python.git"  # HTTPS URL
+SERVER_HOST = "SERVER_IP"
+SERVER_USER = "deploy_user"
+SSH_PRIVATE_KEY_PATH = "path-to-ssh-key"
+DEPLOY_PATH = "path-to-deploy"
+GIT_REPO_URL = "https://github.com/your-username/your-repo.git"  # HTTPS URL
 BRANCH = "main"
 REQUIREMENTS_FILE = "requirements.txt"
 APP_RUN_COMMAND = "python3 app.py"  # Run directly; nohup not strictly needed with PID file
 PID_FILE = f"{DEPLOY_PATH}/app.pid" # Define PID_FILE
-APP_RESTART_COMMAND = "" # Not used any more
 
 # --- Fabric Configuration ---
 config = Config(
