@@ -3,41 +3,40 @@ from fabric.exceptions import GroupException
 import os
 
 # --- Configuration ---
-SERVER_HOST = "your_server_ip_or_hostname"      # Replace with your server IP or hostname
+SERVER_HOST = "your_server_ip_or_hostname"      # Replace with your server IP or hostname (e.g., your_server_public_ip)
 SERVER_USER = "your_server_username"            # Replace with your SSH username on the server
-# SERVER_PASSWORD = "your_server_password"        # REMOVED:  Using private key instead of password
-SSH_PRIVATE_KEY_PATH = "~/.ssh/id_rsa"         # **IMPORTANT:** Replace with the path to your private key file! (e.g., ~/.ssh/id_rsa, ~/.ssh/my_deploy_key)
-DEPLOY_PATH = "/path/to/your/deploy/directory" # Replace with deployment directory path on the server (e.g., /var/www/python_project)
-GIT_REPO_URL = "git@github.com:your_username/python_project.git" # **IMPORTANT:** Replace with your GitHub repository URL for 'python_project'
-BRANCH = "main"                                 # Branch to deploy (e.g., main, master, develop)
-REQUIREMENTS_FILE = "requirements.txt"          # Name of your requirements file (if any)
-APP_RESTART_COMMAND = "sudo systemctl restart python_project_service" # Command to restart your web app (systemd service example - customize!)
+SSH_PRIVATE_KEY_PATH = "~/.ssh/id_rsa"         # **IMPORTANT:** Replace with the path to your private key file!
+DEPLOY_PATH = "/path/to/your/deploy/directory" # Replace with deployment directory path on the server (e.g., /home/your_user/python_project) - MUST EXIST ON SERVER
+GIT_REPO_URL = "git@github.com:your_username/python_project.git" # **IMPORTANT:** Replace with your GitHub repo URL for 'python_project'
+BRANCH = "main"                                 # Branch to deploy
+REQUIREMENTS_FILE = "requirements.txt"          # Name of requirements file
+APP_RUN_COMMAND = "python app.py"               # Command to run your Flask app (in foreground for simple test)
+APP_RESTART_COMMAND = "" # We'll run app directly for test, so no restart needed in this simplified version
 
-# --- Fabric Configuration (Optional but Recommended) ---
+# --- Fabric Configuration ---
 config = Config(
     overrides={
-        'sudo': {}, # sudo settings - we'll configure password prompt if needed later (less common with keys)
+        'sudo': {},
         'connect_kwargs': {
-            'key_filename': [SSH_PRIVATE_KEY_PATH]  # Specify private key path for connection
+            'key_filename': [SSH_PRIVATE_KEY_PATH]
         }
     }
 )
-group = Group(SERVER_HOST, user=SERVER_USER, config=config) # Group of servers
-
+group = Group(SERVER_HOST, user=SERVER_USER, config=config)
 
 # --- Fabric Tasks ---
 
 @task
-def deploy(c): # 'c' is the Connection object
-    print(f"Deploying 'python_project' to server {SERVER_HOST} using private key authentication...")
+def deploy(c):
+    print(f"Deploying 'python_project' to server {SERVER_HOST}...")
 
     with c.cd(DEPLOY_PATH):
         git_pull(c)
         install_dependencies(c)
-        configure_app(c)
-        restart_app(c)
+        configure_app(c) # Keep this task for future configuration if needed
+        run_app(c)        # Run the application directly after deployment
 
-    print("'python_project' deployment completed successfully!")
+    print("'python_project' deployment and run completed! Access your app at http://{SERVER_HOST}:5000/ in your browser (if port 5000 is exposed)")
 
 
 @task
@@ -55,19 +54,24 @@ def install_dependencies(c):
     else:
         print("requirements.txt not found, skipping dependency installation.")
 
-
 @task
 def configure_app(c):
-    # --- CUSTOMIZE THIS TASK! ---
-    print("--- Configuring 'python_project' Application (CUSTOMIZE THIS TASK!) ---")
-    print("You need to customize the 'configure_app' task...")
-    # ... (your custom configuration steps here) ...
+    # --- CUSTOMIZE THIS TASK (Optional for now, keep for future config) ---
+    print("--- Configuring 'python_project' Application (CUSTOMIZE THIS TASK if needed in future) ---")
+    print("configure_app task is currently minimal. Customize it for specific configuration steps if your app requires them.")
+    pass # Add any configuration steps here in future if required
 
 @task
-def restart_app(c):
-    # --- CUSTOMIZE THIS TASK! ---
-    print("--- Restarting 'python_project' Application (CUSTOMIZE THIS TASK!) ---")
-    print("You need to customize the 'restart_app' task...")
+def run_app(c):
+    print("Running 'python_project' application...")
+    with c.cd(DEPLOY_PATH): # Ensure we are in the deploy directory when running app
+        c.run(APP_RUN_COMMAND) # Run the Flask app in foreground for testing
+
+@task
+def restart_app(c): # Restart task is not used in this simplified version, but kept for potential future use
+    # --- CUSTOMIZE THIS TASK if you want to use a proper restart command later ---
+    print("--- Restarting 'python_project' Application (CUSTOMIZE THIS TASK if needed in future for background process) ---")
+    print("restart_app task is currently minimal. Customize it for proper application restart command (e.g., using systemd, supervisor, etc.) if needed for background running.")
     if APP_RESTART_COMMAND:
         print(f"Executing restart command: '{APP_RESTART_COMMAND}'")
         c.sudo(APP_RESTART_COMMAND)
