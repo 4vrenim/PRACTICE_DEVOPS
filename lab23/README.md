@@ -8,4 +8,5 @@
 `fab deploy`
 
 * Accest http://<deploy_server_ip>:5000/greet/<your_name>
+
 ![image](https://github.com/user-attachments/assets/3a4c7652-ba34-4f84-bf9b-507c5b579ebe)
